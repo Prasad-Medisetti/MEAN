@@ -1,0 +1,32 @@
+Mongod.exe - server
+mongo.exe - client
+
+localhost:27017
+
+db --> (group of)collections --> (group of)documents --> (group of)fields
+
+
+create database
+use database_name
+
+view database
+show dbs
+
+delete database
+db.dropDatabase()
+
+create collection
+db.createCollection("students")
+
+view collection
+show collections
+
+delete collection
+db.students.drop()
+
+CRUD         Mongodb   Javascript
+C - create - Insert  - Post
+R - read   - Find    - Get
+U - update - Update  - Put
+D - delete - Remove  - Delete
+
