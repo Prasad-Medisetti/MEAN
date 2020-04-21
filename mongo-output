@@ -1,0 +1,102 @@
+MongoDB shell version v4.2.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("174a1cb7-524d-4d42-bd8e-b6fa0d35aa34") }
+MongoDB server version: 4.2.6
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        http://docs.mongodb.org/
+Questions? Try the support group
+        http://groups.google.com/group/mongodb-user
+Server has startup warnings:
+2020-04-21T09:10:44.593+0530 I  CONTROL  [initandlisten]
+2020-04-21T09:10:44.593+0530 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-04-21T09:10:44.593+0530 I  CONTROL  [initandlisten] **          Read and write access to data and configuration
+2020-04-21T09:10:44.611+0530 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> use thub
+switched to db thub
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use thub
+switched to db thub
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.createCollection("students")
+{ "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+thub    0.000GB
+> show collections
+students
+> db.students.drop()
+true
+> show collections
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.dropDatabase()
+{ "dropped" : "thub", "ok" : 1 }
+> use thub
+switched to db thub
+> db.createCollection("students")
+{ "ok" : 1 }
+> show collections
+students
+> db.students.insert({"name":"siva", "rollno", "college":"AEC"})
+2020-04-21T10:15:32.454+0530 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:43
+> db.students.insert({"name":"siva", "rollno":"123", "college":"AEC"})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({"name":"nani", "rollno":"234", "college":"AEC"})
+WriteResult({ "nInserted" : 1 })
+> db.students.find({})
+{ "_id" : ObjectId("5e9e7a9f6708cea95b65d381"), "name" : "siva", "rollno" : "123", "college" : "AEC" }
+{ "_id" : ObjectId("5e9e7abd6708cea95b65d382"), "name" : "nani", "rollno" : "234", "college" : "AEC" }
+> db.students.find({"name":"siva"})
+{ "_id" : ObjectId("5e9e7a9f6708cea95b65d381"), "name" : "siva", "rollno" : "123", "college" : "AEC" }
+> db.students.find({}).pretty()
+{
+        "_id" : ObjectId("5e9e7a9f6708cea95b65d381"),
+        "name" : "siva",
+        "rollno" : "123",
+        "college" : "AEC"
+}
+{
+        "_id" : ObjectId("5e9e7abd6708cea95b65d382"),
+        "name" : "nani",
+        "rollno" : "234",
+        "college" : "AEC"
+}
+> db.students.remove({"name":"nani"})
+WriteResult({ "nRemoved" : 1 })
+> db.students.find({}).pretty()
+{
+        "_id" : ObjectId("5e9e7a9f6708cea95b65d381"),
+        "name" : "siva",
+        "rollno" : "123",
+        "college" : "AEC"
+}
+>
